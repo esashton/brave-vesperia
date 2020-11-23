@@ -1,7 +1,7 @@
 let BVview = class {
     constructor(selectionModel) {
         this.model = selectionModel;
-        // $('body').append($('<audio/>').attr("src", "media/selection.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
+        $('body').append($('<audio/>').attr("src", "media/selection.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
         this.selectionDIV = $("<div></div>").attr('id', 'game').addClass('selection');
         this.selectCharactersDIV = $('<div/>');
         braveVesperia.forEach(character => {
