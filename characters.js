@@ -64,7 +64,7 @@ const braveVesperia = [
         isMultiTarget: true,
         isAvailable: true
     },
-    health: 35000,
+    health: 26000,
     attack: 1.055,
     defense: .650,
     canAct: true,
@@ -99,7 +99,7 @@ const braveVesperia = [
         isMultiTarget: false,
         isAvailable: true
     },
-    health: 27000,
+    health: 23000,
     attack: 1.200,
     defense: .770,
     canAct: true,
@@ -169,7 +169,7 @@ const braveVesperia = [
         isMultiTarget: true,
         isAvailable: true
     },
-    health: 26000,
+    health: 21000,
     attack: 1.100,
     defense: 0.830,
     canAct: true,
@@ -204,7 +204,7 @@ const braveVesperia = [
         isMultiTarget: true,
         isAvailable: true
     },
-    health: 17000,
+    health: 14000,
     attack: 1.300,
     defense: 0.550,
     canAct: true,
@@ -309,7 +309,7 @@ const braveVesperia = [
         isMultiTarget: false,
         isAvailable: true
     },
-    health: 29000,
+    health: 22000,
     attack: 1.210,
     defense: 0.830,
     canAct: true,
@@ -392,6 +392,6 @@ const boss = {
     weak: 'n/a',
     strong: 'n/a',
     health: 112699,
-    attack: 4000,
+    attack: 4500,
     defense: 1.000
 };
