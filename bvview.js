@@ -68,7 +68,7 @@ let BVview = class {
             thisMember.append(thisMemberData);
             let memberName = $('<div/>').addClass('memberName');
             memberName.append($('<h2/>').text(member.name));
-            memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
+            memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
             thisMemberData.append(memberName);
             thisMemberData.append($('<h3/>').text(member.health + '/' + braveVesperia[member.id].health));
             thisMemberData.append($('<progress/>').attr('value', member.health).attr('max', braveVesperia[member.id].health));
@@ -134,7 +134,7 @@ let BVview = class {
                     thisMember.append(thisMemberData);
                     let memberName = $('<div/>').addClass('memberName');
                     memberName.append($('<h2/>').text(member.name));
-                    memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
+                    memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
                     thisMemberData.append(memberName);
                     thisMemberData.append($('<h3/>').text(0 + '/' + braveVesperia[member.id].health));
                     thisMemberData.append($('<progress/>').attr('value', 0).attr('max', braveVesperia[member.id].health));
@@ -155,7 +155,7 @@ let BVview = class {
                 thisMember.append(thisMemberData);
                 let memberName = $('<div/>').addClass('memberName');
                 memberName.append($('<h2/>').text(member.name));
-                memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
+                memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
                 thisMemberData.append(memberName);
                 thisMemberData.append($('<h3/>').text(member.health + '/' + braveVesperia[member.id].health));
                 thisMemberData.append($('<progress/>').attr('value', Math.floor(member.health)).attr('max', braveVesperia[member.id].health));
@@ -175,7 +175,7 @@ let BVview = class {
             thisMember.append(thisMemberData);
             let memberName = $('<div/>').addClass('memberName');
             memberName.append($('<h2/>').text(member.name));
-            memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
+            memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
             thisMemberData.append(memberName);
             thisMemberData.append($('<h3/>').text(member.health + '/' + braveVesperia[member.id].health));
             thisMemberData.append($('<progress/>').attr('value', Math.floor(member.health)).attr('max', braveVesperia[member.id].health));
