@@ -1,7 +1,7 @@
 let BVview = class {
     constructor(selectionModel) {
         this.model = selectionModel;
-        $('body').append($('<audio/>').attr("src", "media/selection.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
+        // $('body').append($('<audio/>').attr("src", "media/selection.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
         this.selectionDIV = $("<div></div>").attr('id', 'game').addClass('selection');
         this.selectCharactersDIV = $('<div/>');
         braveVesperia.forEach(character => {
@@ -76,7 +76,7 @@ let BVview = class {
             if (member.arte1.type === 0) {
                 thisMemberData.append($('<button/>').addClass('arte1').attr('data-tooltip', 'Hits: ' + member.arte1.hits + ', enemies: ' + (member.arte1.isMultiTarget?'all':'1')).text(member.arte1.name));
             } else {
-                thisMemberData.append($('<button/>').addClass('healingArte').attr('data-tooltip', 'Heal: ' + member.arte1.value).text(member.arte1.name));
+                thisMemberData.append($('<button/>').addClass('healingArte').text(member.arte1.name));
             }
             thisMemberData.append($('<button/>').addClass('arte2').attr('data-tooltip', 'Hits: ' + member.arte2.hits + ', enemies: ' + (member.arte2.isMultiTarget?'all':'1')).text(member.arte2.name));
             this.partyDIV.append(thisMember);
@@ -192,7 +192,7 @@ let BVview = class {
                     thisMemberData.append($('<button/>').addClass('healingArte').addClass('cooldown').text(member.arte1.name));
                     thisMemberData.append($('<span/>').addClass('turnsLeft').text(member.arte1.turnsLeft));
                 } else {
-                    thisMemberData.append($('<button/>').addClass('healingArte').attr('data-tooltip', 'Heal: ' + member.arte1.value).text(member.arte1.name));
+                    thisMemberData.append($('<button/>').addClass('healingArte').text(member.arte1.name));
                 }
             }
             if (!member.arte2.isAvailable) {
