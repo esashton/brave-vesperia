@@ -12,10 +12,6 @@ a {
     font-size: 20px;
 }
 
-.htp {
-    
-}
-
 .control {
     text-align: center;
     display: inline-block;
@@ -258,7 +254,7 @@ button:not(#start) {
     visibility: hidden;
 }
 
-.memeberLI.dead {
+.memberLI.dead {
     opacity: 0.7;
     background-color: maroon;
 }
@@ -276,7 +272,7 @@ button:not(#start) {
 }
 
 #start {
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translate(-50%, 1100%);
     background-color: sandybrown;
@@ -300,4 +296,14 @@ button:not(#start) {
   10% { opacity: 1 }
 }
 
+.gameOver {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: maroon;
+}
 
+.gameWon {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: gold;
+}
