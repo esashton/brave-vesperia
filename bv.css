@@ -217,7 +217,7 @@ button:not(#start) {
     border-radius: 10px;
 }
 
-.arte1::before, .arte1::after, .arte2::before, .arte2::after, .healingArte::before, .healingArte::after {
+.arte1::before, .arte1::after, .arte2::before, .arte2::after {
     --scale: 0;
     position: absolute;
     top: -0.25rem;
@@ -226,7 +226,7 @@ button:not(#start) {
     transition: 112.6ms transform;
 }
 
-.arte1::before, .arte2::before, .healingArte::before {
+.arte1::before, .arte2::before {
     content: attr(data-tooltip);
     color: white;
     padding: 0.5rem;
@@ -237,8 +237,7 @@ button:not(#start) {
 }
 
 .arte1:not(.cannotActButton):not(.cooldown):hover::before,
-.arte2:not(.cannotActButton):not(.cooldown):hover::before,
-.healingArte:not(.cannotActButton):not(.cooldown):hover::before {
+.arte2:not(.cannotActButton):not(.cooldown):hover::before {
     --scale: 1;
 }
 
