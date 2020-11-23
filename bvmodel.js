@@ -27,7 +27,7 @@ let BVmodel = class {
         this.gameState.highestTurnDamage = 0;
         this.gameState.highestHitCount = 0;
         this.gameState.turnCount = 1;
-        this.gameState.wave = 1;
+        this.gameState.wave = 2;
         this.gameState.isWon = false;
         this.gameState.isLost = false;
         this.gameState.isBoss = false;
@@ -139,7 +139,6 @@ let BVmodel = class {
 
     heal(memberToHeal) {
         memberToHeal.health += this.hitMultiplier() * 5000;
-        console.log('id: ' + memberToHeal.id);
         if (memberToHeal.health > braveVesperia[memberToHeal.id].health) {
             memberToHeal.health = braveVesperia[memberToHeal.id].health;
         }
@@ -204,11 +203,9 @@ let BVcontroller = class {
     }
 
     handleKeyup(keyCode) {
-        console.log(keyCode);
         switch(keyCode) {
             case 13: // Start (Enter/Return)
                 this.secret.push(13);
-                console.log('array: ' + this.secret);
                 if (JSON.stringify(this.secret) !== JSON.stringify([38,38,40,40,37,39,37,39,66,65,13])) {
                     this.secret = [];
                     break;
@@ -314,6 +311,17 @@ let BVGameController = class {
             }
         });
         if (endOfWave) {
+            if (this.model.gameState.wave === 3) {
+                this.model.gameState.isWon = true;
+                if (this.model.gameState.highestHitCount < this.model.turnState.hitCount) {
+                    this.model.gameState.highestHitCount = this.model.turnState.hitCount;
+                }
+                if (this.model.gameState.highestTurnDamage < this.model.turnState.turnDamage) {
+                    this.model.gameState.highestTurnDamage = this.model.turnState.turnDamage;
+                }
+                this.view.gameWon();
+                return;
+            }
             this.model.toNextWave();
         }
         this.view.render();
@@ -421,6 +429,17 @@ let BVGameController = class {
             }
         });
         if (endOfWave) {
+            if (this.model.gameState.wave === 3) {
+                this.model.gameState.isWon = true;
+                if (this.model.gameState.highestHitCount < this.model.turnState.hitCount) {
+                    this.model.gameState.highestHitCount = this.model.turnState.hitCount;
+                }
+                if (this.model.gameState.highestTurnDamage < this.model.turnState.turnDamage) {
+                    this.model.gameState.highestTurnDamage = this.model.turnState.turnDamage;
+                }
+                this.view.gameWon();
+                return;
+            }
             this.model.toNextWave();
         }
         this.view.render()  
