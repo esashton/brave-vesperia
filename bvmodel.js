@@ -352,6 +352,17 @@ let BVGameController = class {
                 }
             });
             if (endOfWave) {
+                if (this.model.gameState.wave === 3) {
+                    this.model.gameState.isWon = true;
+                    if (this.model.gameState.highestHitCount < this.model.turnState.hitCount) {
+                        this.model.gameState.highestHitCount = this.model.turnState.hitCount;
+                    }
+                    if (this.model.gameState.highestTurnDamage < this.model.turnState.turnDamage) {
+                        this.model.gameState.highestTurnDamage = this.model.turnState.turnDamage;
+                    }
+                    this.view.gameWon();
+                    return;
+                }
                 this.model.toNextWave();
             }
             this.view.render()
@@ -385,6 +396,17 @@ let BVGameController = class {
                 }
             });
             if (endOfWave) {
+                if (this.model.gameState.wave === 3) {
+                    this.model.gameState.isWon = true;
+                    if (this.model.gameState.highestHitCount < this.model.turnState.hitCount) {
+                        this.model.gameState.highestHitCount = this.model.turnState.hitCount;
+                    }
+                    if (this.model.gameState.highestTurnDamage < this.model.turnState.turnDamage) {
+                        this.model.gameState.highestTurnDamage = this.model.turnState.turnDamage;
+                    }
+                    this.view.gameWon();
+                    return;
+                }
                 this.model.toNextWave();
             }
             this.view.render()
@@ -446,7 +468,7 @@ let BVGameController = class {
     }
 
     healThisAlly(element) {
-        if ($(element).hasClass('healThisAlly') == false || $(element).hasClass('dead')) {
+        if ($(element).hasClass('healThisAlly') == false || $(element).hasClass('dead') || this.model.partyState.party[element.id[1]].health === braveVesperia[this.model.partyState.party[element.id[1]].id].health) {
             return;
         }
         let memberToHealID = $(element).attr('id')[1];
