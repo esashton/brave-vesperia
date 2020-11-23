@@ -391,7 +391,7 @@ const boss = {
     element: "none",
     weak: 'n/a',
     strong: 'n/a',
-    health: 100000,
-    attack: 3500,
+    health: 112699,
+    attack: 4000,
     defense: 1.000
 };
