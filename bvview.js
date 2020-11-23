@@ -1,7 +1,7 @@
 let BVview = class {
     constructor(selectionModel) {
         this.model = selectionModel;
-        // $('body').append($('<audio/>').attr("src", "media/selection.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
+        $('body').append($('<audio/>').attr("src", "media/selection.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
         this.selectionDIV = $("<div></div>").attr('id', 'game').addClass('selection');
         this.selectCharactersDIV = $('<div/>');
         braveVesperia.forEach(character => {
@@ -42,7 +42,6 @@ let BVview = class {
                 })
                 .css('text-align', 'center'));
         }
-        console.log(this.model.selectionState.selected)
     }
 
     deselect(id) {
@@ -52,7 +51,6 @@ let BVview = class {
         }
         $("#" + id).removeClass("selected");
         $("#" + id).addClass("unselected");
-        console.log(this.model.selectionState.selected);
     }
 
     // GAME WINDOW IS CREATED BELOW AND THE SELECTION PROCESS ENDS //
@@ -70,7 +68,7 @@ let BVview = class {
             thisMember.append(thisMemberData);
             let memberName = $('<div/>').addClass('memberName');
             memberName.append($('<h2/>').text(member.name));
-            memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
+            memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
             thisMemberData.append(memberName);
             thisMemberData.append($('<h3/>').text(member.health + '/' + braveVesperia[member.id].health));
             thisMemberData.append($('<progress/>').attr('value', member.health).attr('max', braveVesperia[member.id].health));
@@ -136,7 +134,7 @@ let BVview = class {
                     thisMember.append(thisMemberData);
                     let memberName = $('<div/>').addClass('memberName');
                     memberName.append($('<h2/>').text(member.name));
-                    memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
+                    memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
                     thisMemberData.append(memberName);
                     thisMemberData.append($('<h3/>').text(0 + '/' + braveVesperia[member.id].health));
                     thisMemberData.append($('<progress/>').attr('value', 0).attr('max', braveVesperia[member.id].health));
@@ -157,7 +155,7 @@ let BVview = class {
                 thisMember.append(thisMemberData);
                 let memberName = $('<div/>').addClass('memberName');
                 memberName.append($('<h2/>').text(member.name));
-                memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
+                memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
                 thisMemberData.append(memberName);
                 thisMemberData.append($('<h3/>').text(member.health + '/' + braveVesperia[member.id].health));
                 thisMemberData.append($('<progress/>').attr('value', Math.floor(member.health)).attr('max', braveVesperia[member.id].health));
@@ -177,7 +175,7 @@ let BVview = class {
             thisMember.append(thisMemberData);
             let memberName = $('<div/>').addClass('memberName');
             memberName.append($('<h2/>').text(member.name));
-            memberName.append($('<img/>').addClass('memberElement').attr('src', 'media/portraits/' + member.element + '.png'));
+            memberName.append($('<img/>').addClass('memberElement').attr('src', '/media/portraits/' + member.element + '.png'));
             thisMemberData.append(memberName);
             thisMemberData.append($('<h3/>').text(member.health + '/' + braveVesperia[member.id].health));
             thisMemberData.append($('<progress/>').attr('value', Math.floor(member.health)).attr('max', braveVesperia[member.id].health));
@@ -216,7 +214,7 @@ let BVview = class {
         let elementalAdvantageImage = $('<img/>').attr('src', 'media/portraits/elementaladvantage.png')
         let hitCount = $('<h3/>').attr('id', 'hitCount').text('Hit Count: ' + this.model.turnState.hitCount);
         let turnDamage = $('<h3/>').attr('id', 'hitCount').text('Total Damage: ' + Math.floor(this.model.gameState.totalDamage));
-        let arenaBottom = $('<data/>');
+        let arenaBottom = $('<data/>').addClass('arenaBottom');
         arenaBottom.append(howToPlayLink);
         arenaBottom.append(elementalAdvantageImage);
         arenaBottom.append(hitCount);
@@ -253,10 +251,6 @@ let BVview = class {
             e++;
         });
 
-        if (this.model.gameState.isLost) {
-
-        }
-
         let endOfPartyTurn = true;
         this.model.partyState.party.forEach(member => {
             if (member.canAct === true) {
@@ -265,12 +259,38 @@ let BVview = class {
         });
         if (endOfPartyTurn) {
             this.model.enemyTurn();
+            if (this.model.gameState.isLost) {
+                this.gameOver();
+                return;
+            }
             this.render();
             return;
         }
+        
+    }
 
+    gameOver() {
+        this.partyDIV.empty();
+        let gameOverDIV = $('<li/>').addClass('gameOver');
+        gameOverDIV.append($('<h1/>').addClass('gameOverText').text('And they were never heard from, again...'));
+        gameOverDIV.append($('<h3/>').text('You survived ' + this.model.gameState.turnCount  + ' turns.'));
+        gameOverDIV.append($('<h3/>').text('Total damage: ' + Math.floor(this.model.gameState.totalDamage)));
+        this.partyDIV.append(gameOverDIV);
+        return;
+    }
 
-
+    gameWon() {
+        this.enemyDIV.empty();
+        let gameWonDIV = $('<li/>').addClass('gameWon');
+        gameWonDIV.append($('<h1/>').addClass('gameWonText').text('Battle Won!'));
+        gameWonDIV.append($('<h3/>').text('Turns taken: ' + this.model.gameState.turnCount + ' turns'));
+        gameWonDIV.append($('<h3/>').text('Highest hit count: ' + this.model.gameState.highestHitCount));
+        gameWonDIV.append($('<h3/>').text('Highest turn damage: ' + Math.floor(this.model.gameState.highestTurnDamage)));
+        gameWonDIV.append($('<h3/>').text('Total damage: ' + Math.floor(this.model.gameState.totalDamage)));
+        this.enemyDIV.append(gameWonDIV);
+        $('.control').empty();
+        $('.arenaBottom').empty();
+        return;
     }
 
     pressAttack(element, enemies) {
