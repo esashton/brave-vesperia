@@ -57,6 +57,7 @@ let BVview = class {
     
     readyGame(party, enemies) {
         $('body').empty();
+        $('body').append($('<audio/>').attr("src", "media/battle.mp3").attr("loop", "true").attr("autoplay", "true").attr("type", "audio/mpeg").css("visibility", "hidden"));
         this.gameDIV.append(this.partyDIV);
         this.gameDIV.append(this.enemyDIV);
         $('body').append(this.gameDIV);
